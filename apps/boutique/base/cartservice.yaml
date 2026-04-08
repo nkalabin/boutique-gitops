@@ -101,6 +101,7 @@ spec:
       labels:
         app: redis-cart
     spec:
+      serviceName: redis-cart
       securityContext:
         fsGroup: 1000
         runAsGroup: 1000
@@ -153,7 +154,7 @@ metadata:
   labels:
     app: redis-cart
 spec:
-  type: ClusterIP
+  type: None
   selector:
     app: redis-cart
   ports:
