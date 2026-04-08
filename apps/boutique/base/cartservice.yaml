@@ -93,6 +93,7 @@ metadata:
   labels:
     app: redis-cart
 spec:
+  serviceName: redis-cart
   selector:
     matchLabels:
       app: redis-cart
@@ -101,7 +102,6 @@ spec:
       labels:
         app: redis-cart
     spec:
-      serviceName: redis-cart
       securityContext:
         fsGroup: 1000
         runAsGroup: 1000
@@ -137,15 +137,15 @@ spec:
           limits:
             cpu: 100m
             memory: 128Mi
-      volumeClaimTemplates:
-      - metadata:
-          name: redis-data
-        spec:
-          accessModes: [ "ReadWriteOnce" ]
-          storageClassName: "longhorn-test"
-          resources:
-            requests:
-              storage: 128Mi
+  volumeClaimTemplates:
+  - metadata:
+      name: redis-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "longhorn-test"
+      resources:
+        requests:
+          storage: 128Mi
 ---
 apiVersion: v1
 kind: Service
