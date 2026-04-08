@@ -87,7 +87,7 @@ metadata:
   name: cartservice
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: redis-cart
   labels:
@@ -136,9 +136,15 @@ spec:
           limits:
             cpu: 100m
             memory: 128Mi
-      volumes:
-      - name: redis-data
-        emptyDir: {}
+      volumeClaimTemplates:
+      - metadata:
+          name: redis-data
+        spec:
+          accessModes: [ "ReadWriteOnce" ]
+          storageClassName: "longhorn-test"
+          resources:
+            requests:
+              storage: 128Mi
 ---
 apiVersion: v1
 kind: Service
