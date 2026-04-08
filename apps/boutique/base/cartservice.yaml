@@ -154,7 +154,7 @@ metadata:
   labels:
     app: redis-cart
 spec:
-  type: None
+  clusterIP: None
   selector:
     app: redis-cart
   ports:
