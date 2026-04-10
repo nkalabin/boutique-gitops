@@ -137,15 +137,9 @@ spec:
           limits:
             cpu: 100m
             memory: 128Mi
-  volumeClaimTemplates:
-  - metadata:
-      name: redis-data
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "longhorn-test"
-      resources:
-        requests:
-          storage: 128Mi
+      volumes:
+      - name: redis-data
+        emptyDir: {}
 ---
 apiVersion: v1
 kind: Service

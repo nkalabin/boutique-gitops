@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis-cart
+  labels:
+    app: redis-cart
+spec:
+  volumeClaimTemplates:
+  - metadata:
+      name: redis-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "longhorn-test"
+      resources:
+        requests:
+          storage: 128Mi
