@@ -1,0 +1,17 @@
+apiVersion: cilium.io/v2
+kind: CiliumBGPClusterConfig
+metadata:
+  name: cilium-bgp
+spec:
+  nodeSelector:
+    matchLabels:
+      bgp: "true"
+  bgpInstances:
+    - name: "instance-65000"
+      localASN: 65000 # Локальный ASN Cilium
+      peers:
+        - name: "opnsense"
+          peerASN: 65551 # ASN OPNsense
+          peerAddress: "192.168.1.1" # IP OPNsense
+          peerConfigRef:
+            name: "opnsense-peer-config"
